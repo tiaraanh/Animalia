@@ -26,4 +26,18 @@ final class DetailViewModel: ObservableObject {
             print("Animal updated: \(animal)")
         }
     }
+    
+    func toggleLock(animal: Animal, completion: @escaping (Bool) -> Void) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let copiedAnimal = realm.create(Animal.self, value: animal, update: .modified)
+                copiedAnimal.isLocked.toggle()
+                completion(true)
+            }
+        } catch {
+            print("Error toggling lock: \(error.localizedDescription)")
+            completion(false)
+        }
+    }
 }

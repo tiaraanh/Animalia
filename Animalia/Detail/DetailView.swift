@@ -28,6 +28,7 @@ struct DetailView: View {
                 TextField("Enter type", text: $animal.type)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.bottom, 10)
+                    .disabled(animal.isLocked)
             }
             
             Group {
@@ -37,12 +38,19 @@ struct DetailView: View {
                 TextField("Enter name", text: $animal.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.bottom, 10)
+                    .disabled(animal.isLocked)
             }
             
             Toggle("Lock", isOn: $animal.isLocked)
                 .padding(.top, 10)
                 .onChange(of: animal.isLocked) { newValue in
-                    viewModel.saveAnimal(animal: animal)
+                    viewModel.toggleLock(animal: animal) { success in
+                        if success {
+                            print("Toggle success")
+                        } else {
+                            print("Toggle failed")
+                        }
+                    }
                 }
             
             Button(action: {

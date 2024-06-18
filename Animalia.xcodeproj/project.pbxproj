@@ -11,12 +11,12 @@
 		9459678F2C1A6C51009247E1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9459678E2C1A6C51009247E1 /* ListView.swift */; };
 		945967912C1A6C53009247E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945967902C1A6C53009247E1 /* Assets.xcassets */; };
 		945967942C1A6C53009247E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945967932C1A6C53009247E1 /* Preview Assets.xcassets */; };
-		9492BDEB2C1FDB91004778B9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9492BDEA2C1FDB91004778B9 /* RealmSwift */; };
-		9492BDEC2C1FDD96004778B9 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 9492BDEA2C1FDB91004778B9 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9492BDEE2C1FE12B004778B9 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492BDED2C1FE12B004778B9 /* ListViewModel.swift */; };
 		9492BDF32C1FE4BA004778B9 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492BDF22C1FE4BA004778B9 /* FormView.swift */; };
 		9492BDF62C200A83004778B9 /* AnimalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492BDF52C200A83004778B9 /* AnimalContainer.swift */; };
 		9492BDF82C205ACC004778B9 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492BDF72C205ACC004778B9 /* DetailViewModel.swift */; };
+		9492BDFD2C212415004778B9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9492BDFC2C212415004778B9 /* RealmSwift */; };
+		9492BDFE2C212424004778B9 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 9492BDFC2C212415004778B9 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		94FA5AF82C1EF178000ABE20 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FA5AF72C1EF178000ABE20 /* Animal.swift */; };
 		94FA5AFA2C1EF256000ABE20 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FA5AF92C1EF256000ABE20 /* DetailView.swift */; };
 		94FA5AFC2C1EF28D000ABE20 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FA5AFB2C1EF28D000ABE20 /* SettingView.swift */; };
@@ -29,7 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9492BDEC2C1FDD96004778B9 /* RealmSwift in Embed Frameworks */,
+				9492BDFE2C212424004778B9 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9492BDEB2C1FDB91004778B9 /* RealmSwift in Frameworks */,
+				9492BDFD2C212415004778B9 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +163,7 @@
 			);
 			name = Animalia;
 			packageProductDependencies = (
-				9492BDEA2C1FDB91004778B9 /* RealmSwift */,
+				9492BDFC2C212415004778B9 /* RealmSwift */,
 			);
 			productName = Animalia;
 			productReference = 945967892C1A6C51009247E1 /* Animalia.app */;
@@ -194,7 +194,7 @@
 			);
 			mainGroup = 945967802C1A6C51009247E1;
 			packageReferences = (
-				9492BDE72C1FDB91004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				9492BDF92C212415004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 9459678A2C1A6C51009247E1 /* Products */;
 			projectDirPath = "";
@@ -440,20 +440,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9492BDE72C1FDB91004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		9492BDF92C212415004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9492BDEA2C1FDB91004778B9 /* RealmSwift */ = {
+		9492BDFC2C212415004778B9 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9492BDE72C1FDB91004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 9492BDF92C212415004778B9 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

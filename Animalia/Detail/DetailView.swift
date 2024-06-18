@@ -12,6 +12,10 @@ struct DetailView: View {
     
     // MARK: - Properties
     @ObservedRealmObject var animal: Animal
+    @StateObject private var viewModel = DetailViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var isActive: Bool
+    var onDismiss: (() -> Void)?
     
     // MARK: - Body
     var body: some View {
@@ -37,6 +41,20 @@ struct DetailView: View {
             
             Toggle("Lock", isOn: $animal.isLocked)
                 .padding(.top, 10)
+            
+            Button(action: {
+                viewModel.saveAnimal(animal: animal)
+                isActive = false
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Save")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .padding(.top, 10)
             
             Button(action: {
                 
@@ -68,5 +86,8 @@ struct DetailView: View {
         .padding()
         .navigationTitle("Animal Detail")
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            onDismiss?()
+        }
     }
 }

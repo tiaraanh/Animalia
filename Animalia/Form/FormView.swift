@@ -14,7 +14,7 @@ struct FormView: View {
     // MARK: - Properties
     @Environment(\.presentationMode) var presentationMode
     @ObservedResults(Animal.self) var animals
-    @StateObject var viewModel = ListViewModel()
+    @StateObject var listViewModel = ListViewModel()
     
     @State private var type: String = ""
     @State private var name: String = ""
@@ -35,7 +35,7 @@ struct FormView: View {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
                 addItem()
-                viewModel.getAnimals()
+                listViewModel.getAnimals()
                 presentationMode.wrappedValue.dismiss()
             })
         }

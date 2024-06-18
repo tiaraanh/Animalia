@@ -57,22 +57,32 @@ struct ListView: View {
             }
         }
         .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Confirm Delete"),
-                message: Text("Are you sure you want to delete this animal?"),
-                primaryButton: .destructive(Text("Delete")) {
-                    if let animal = animalToDelete {
-                        viewModel.deleteAnimal(by: animal.id) { success in
-                            if success {
-                                DispatchQueue.main.async {
-                                    viewModel.animalResult.removeAll { $0.id == animal.id }
+            if let animal = animalToDelete {
+                if animal.isLocked {
+                    return Alert(
+                        title: Text("Cannot Delete"),
+                        message: Text("This animal is locked and cannot be delete"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                } else {
+                    return Alert(
+                        title: Text("Confirm Delete"),
+                        message: Text("Are you sure you want to delete this animal?"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            viewModel.deleteAnimal(by: animal.id) { success in
+                                if success {
+                                    DispatchQueue.main.async {
+                                        viewModel.animalResult.removeAll { $0.id == animal.id }
+                                    }
                                 }
                             }
-                        }
-                    }
-                },
-                secondaryButton: .cancel()
-            )
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+            } else {
+                return Alert(title: Text("Error"), message: Text("Unable to delete animal"))
+            }
         }
     }
     

@@ -16,6 +16,8 @@ struct ListView: View {
     @State private var showAnimalForm = false
     @State private var showSettings = false
     @State private var isDetailViewActive = false
+    @State private var showAlert = false
+    @State private var animalToDelete: AnimalContainer?
     
     // MARK: - Body
     var body: some View {
@@ -54,13 +56,32 @@ struct ListView: View {
                 viewModel.getAnimals()
             }
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Confirm Delete"),
+                message: Text("Are you sure you want to delete this animal?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    if let animal = animalToDelete {
+                        viewModel.deleteAnimal(by: animal.id) { success in
+                            if success {
+                                DispatchQueue.main.async {
+                                    viewModel.animalResult.removeAll { $0.id == animal.id }
+                                }
+                            }
+                        }
+                    }
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
     
     // MARK: - Functions
     func deleteItems(at offsets: IndexSet) {
         for index in offsets {
             let animal = viewModel.animalResult[index]
-            viewModel.deleteAnimal(by: animal.id)
+            animalToDelete = animal
+            showAlert = true
         }
     }
     

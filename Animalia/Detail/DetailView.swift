@@ -41,11 +41,15 @@ struct DetailView: View {
             
             Toggle("Lock", isOn: $animal.isLocked)
                 .padding(.top, 10)
+                .onChange(of: animal.isLocked) { newValue in
+                    viewModel.saveAnimal(animal: animal)
+                }
             
             Button(action: {
                 viewModel.saveAnimal(animal: animal)
                 isActive = false
                 presentationMode.wrappedValue.dismiss()
+                onDismiss?()
             }) {
                 Text("Save")
                     .frame(maxWidth: .infinity)
@@ -71,6 +75,7 @@ struct DetailView: View {
             Button(action: {
                 viewModel.deleteAnimal(by: animal.id)
                 presentationMode.wrappedValue.dismiss()
+                onDismiss?()
             }) {
                 Text("Delete")
                     .frame(maxWidth: .infinity)

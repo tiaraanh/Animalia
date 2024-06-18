@@ -17,12 +17,15 @@ final class ListViewModel: ObservableObject {
         animalResult = realm.objects(Animal.self).map { Animal(id: $0.id, type: $0.type, name: $0.name, isLocked: $0.isLocked) }
     }
     
-    func deleteAnimal(by id: String) {
+    func deleteAnimal(by id: String, completion: @escaping (Bool) -> Void) {
         let realm = try! Realm()
-        if let animalToDelete = realm.object(ofType: Animal.self, forPrimaryKey: id) {
+        if let animalToDelete = realm.object(ofType: Animal.self, forPrimaryKey: id), !animalToDelete.isLocked {
             try! realm.write {
                 realm.delete(animalToDelete)
+                completion(true)
             }
+        } else {
+            completion(false)
         }
-    }
+    } 
 }

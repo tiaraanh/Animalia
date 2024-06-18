@@ -69,7 +69,8 @@ struct DetailView: View {
             .padding(.top, 10)
             
             Button(action: {
-                
+                viewModel.deleteAnimal(by: animal.id)
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Delete")
                     .frame(maxWidth: .infinity)

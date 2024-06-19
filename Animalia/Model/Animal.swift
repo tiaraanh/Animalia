@@ -14,16 +14,18 @@ class Animal: Object, AnimalContainer, ObjectKeyIdentifiable {
     @Persisted var type: String
     @Persisted var name: String
     @Persisted var isLocked: Bool
+    @Persisted var sortOrder: Int
     
     override init() {
         super.init()
     }
     
-    init(id: String = UUID().uuidString, type: String, name: String, isLocked: Bool = false) {
+    init(id: String = UUID().uuidString, type: String, name: String, isLocked: Bool = false, sortOrder: Int = 0) {
         super.init()
         self.id = id
         self.type = type
         self.name = name
         self.isLocked = isLocked
+        self.sortOrder = sortOrder
     }
 }

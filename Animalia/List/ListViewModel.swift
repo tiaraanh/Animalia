@@ -14,7 +14,12 @@ final class ListViewModel: ObservableObject {
     
     func getAnimals() {
         let realm = try! Realm()
-        animalResult = realm.objects(Animal.self).map { Animal(id: $0.id, type: $0.type, name: $0.name, isLocked: $0.isLocked) }
+        let animals = realm.objects(Animal.self).sorted(byKeyPath: "sortOrder", ascending: true)
+        animalResult = animals.map { Animal(id: $0.id, type: $0.type, name: $0.name, isLocked: $0.isLocked, sortOrder: $0.sortOrder) }
+        
+        for animal in animalResult {
+            print("Animal ID: \(animal.name), Sort Order: \(animal.sortOrder)")
+        }
     }
     
     func deleteAnimal(by id: String, completion: @escaping (Bool) -> Void) {

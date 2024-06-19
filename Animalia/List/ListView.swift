@@ -96,6 +96,16 @@ struct ListView: View {
     }
     
     func moveItems(from source: IndexSet, to destination: Int) {
-        
+        guard destination < viewModel.animalResult.count else { return }
+        viewModel.animalResult.move(fromOffsets: source, toOffset: destination)
+        let realm = try! Realm()
+        try! realm.write {
+            for (index, animalContainer) in viewModel.animalResult.enumerated() {
+                let animal = realm.object(ofType: Animal.self, forPrimaryKey: animalContainer.id)
+                animal?.sortOrder = index
+                viewModel.animalResult[index].sortOrder = index
+            }
+        }
+        viewModel.getAnimals()
     }
 }

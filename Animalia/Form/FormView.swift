@@ -13,7 +13,7 @@ struct FormView: View {
     
     // MARK: - Properties
     @Environment(\.presentationMode) var presentationMode
-    @ObservedResults(Animal.self) var animals
+    @ObservedResults(Animals.self) var animals
     @StateObject var listViewModel = ListViewModel()
     
     @State private var type: String = ""
@@ -43,7 +43,7 @@ struct FormView: View {
     
     // MARK: - Function
     func addItem() {
-        let newAnimal = Animal(type: type, name: name)
+        let newAnimal = Animals(type: type, name: name)
         $animals.append(newAnimal)
     }
 }

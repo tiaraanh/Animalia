@@ -14,4 +14,6 @@ protocol AnimalContainer {
     var name: String { get set }
     var isLocked: Bool { get set }
     var sortOrder: Int { get set }
+    var hideName: Bool { get set }
+    var hideType: Bool { get set }
 }

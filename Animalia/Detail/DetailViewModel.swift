@@ -12,14 +12,14 @@ final class DetailViewModel: ObservableObject {
     
     func deleteAnimal(by id: String) {
         let realm = try! Realm()
-        if let animalToDelete = realm.object(ofType: Animal.self, forPrimaryKey: id) {
+        if let animalToDelete = realm.object(ofType: Animals.self, forPrimaryKey: id) {
             try! realm.write {
                 realm.delete(animalToDelete)
             }
         }
     }
     
-    func saveAnimal(animal: Animal) {
+    func saveAnimal(animal: Animals) {
         let realm = try! Realm()
         try! realm.write {
             realm.add(animal, update: .modified)
@@ -27,11 +27,11 @@ final class DetailViewModel: ObservableObject {
         }
     }
     
-    func toggleLock(animal: Animal, completion: @escaping (Bool) -> Void) {
+    func toggleLock(animal: Animals, completion: @escaping (Bool) -> Void) {
         do {
             let realm = try Realm()
             try realm.write {
-                let copiedAnimal = realm.create(Animal.self, value: animal, update: .modified)
+                let copiedAnimal = realm.create(Animals.self, value: animal, update: .modified)
                 copiedAnimal.isLocked.toggle()
                 completion(true)
             }

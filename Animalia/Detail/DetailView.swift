@@ -11,7 +11,7 @@ import RealmSwift
 struct DetailView: View {
     
     // MARK: - Properties
-    @ObservedRealmObject var animal: Animal
+    @ObservedRealmObject var animal: Animals
     @StateObject private var viewModel = DetailViewModel()
     @Environment(\.presentationMode) var presentationMode
     @Binding var isActive: Bool

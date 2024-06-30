@@ -11,13 +11,14 @@ import RealmSwift
 struct ListView: View {
     
     // MARK: - Properties
-    @ObservedResults(Animal.self) var animals
+    @ObservedResults(Animals.self) var animals
     @StateObject var viewModel = ListViewModel()
     @State private var showAnimalForm = false
     @State private var showSettings = false
     @State private var isDetailViewActive = false
     @State private var showAlert = false
     @State private var animalToDelete: AnimalContainer?
+    @State private var defaultAnimal: Animals = Animals()
     
     // MARK: - Body
     var body: some View {
@@ -26,23 +27,50 @@ struct ListView: View {
             
             List {
                 ForEach(viewModel.animalResult, id: \.id) { animal in
-                    NavigationLink(destination: DetailView(animal: animal as! Animal, isActive: $isDetailViewActive, onDismiss: {
+                    NavigationLink(destination: DetailView(animal: animal as! Animals, isActive: $isDetailViewActive, onDismiss: {
                         viewModel.getAnimals()
                     })) {
-                        Text(animal.name)
+                        VStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                Text(animal.type)
+                                    .font(.headline)
+                                    .opacity(animal.hideName ? 0 : 1)
+                                    .onAppear {
+                                        print("Animal type: \(animal.type), hideName: \(animal.hideName)")
+                                    }
+                                Text(animal.name)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .opacity(animal.hideType ? 0 : 1)
+                                    .onAppear {
+                                        print("Animal name: \(animal.name), hideType: \(animal.hideType)")
+                                    }
+                            }
+                        }
                     }
                 }
                 .onDelete(perform: deleteItems)
                 .onMove(perform: moveItems)
             }
             .navigationBarTitle("Animal List")
-            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
-                showAnimalForm = true
-            }) {
-                Image(systemName: "plus")
-            })
-            .sheet(isPresented: $showSettings) {
-                SettingsView()
+            .navigationBarItems(
+                leading: Button(action: {
+                    let animals = animals
+                    showSettings = true
+                }) {
+                    Image(systemName: "gearshape")
+                },
+                trailing: Button(action: {
+                    showAnimalForm = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            )
+            .fullScreenCover(isPresented: $showSettings) {
+                SettingsView(viewModel: SettingsViewModel())
+                    .onDisappear {
+                        viewModel.getAnimals()
+                    }
             }
             .fullScreenCover(isPresented: $showAnimalForm) {
                 FormView()
@@ -101,7 +129,7 @@ struct ListView: View {
         let realm = try! Realm()
         try! realm.write {
             for (index, animalContainer) in viewModel.animalResult.enumerated() {
-                let animal = realm.object(ofType: Animal.self, forPrimaryKey: animalContainer.id)
+                let animal = realm.object(ofType: Animals.self, forPrimaryKey: animalContainer.id)
                 animal?.sortOrder = index
                 viewModel.animalResult[index].sortOrder = index
             }

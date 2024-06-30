@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
 final class DetailViewModel: ObservableObject {
     
@@ -39,5 +40,10 @@ final class DetailViewModel: ObservableObject {
             print("Error toggling lock: \(error.localizedDescription)")
             completion(false)
         }
+    }
+    
+    func saveAndShareAsImage(image: UIImage) {
+        let snapshotHelper = SnapshotHelper()
+        snapshotHelper.share(image: image, from: UIApplication.shared.windows.first?.rootViewController)
     }
 }

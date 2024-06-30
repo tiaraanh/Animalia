@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		94229EB32C2D9B810037324D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94229EB22C2D9B810037324D /* SettingsViewModel.swift */; };
 		94229EB52C2D9F060037324D /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94229EB42C2D9F060037324D /* Animals.swift */; };
+		94229EB82C313C6E0037324D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94229EB72C313C6E0037324D /* UIView+Extension.swift */; };
+		94229EBB2C313D910037324D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94229EBA2C313D910037324D /* SnapshotHelper.swift */; };
+		94229EBD2C3141FF0037324D /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94229EBC2C3141FF0037324D /* View+Extension.swift */; };
 		9459678D2C1A6C51009247E1 /* AnimaliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9459678C2C1A6C51009247E1 /* AnimaliaApp.swift */; };
 		9459678F2C1A6C51009247E1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9459678E2C1A6C51009247E1 /* ListView.swift */; };
 		945967912C1A6C53009247E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945967902C1A6C53009247E1 /* Assets.xcassets */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		94229EB22C2D9B810037324D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		94229EB42C2D9F060037324D /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
+		94229EB72C313C6E0037324D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		94229EBA2C313D910037324D /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		94229EBC2C3141FF0037324D /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		945967892C1A6C51009247E1 /* Animalia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animalia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9459678C2C1A6C51009247E1 /* AnimaliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimaliaApp.swift; sourceTree = "<group>"; };
 		9459678E2C1A6C51009247E1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -65,6 +71,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94229EB62C313C590037324D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				94229EB72C313C6E0037324D /* UIView+Extension.swift */,
+				94229EBC2C3141FF0037324D /* View+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		94229EB92C313D830037324D /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				94229EBA2C313D910037324D /* SnapshotHelper.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		945967802C1A6C51009247E1 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +107,8 @@
 		9459678B2C1A6C51009247E1 /* Animalia */ = {
 			isa = PBXGroup;
 			children = (
+				94229EB62C313C590037324D /* Extension */,
+				94229EB92C313D830037324D /* Commons */,
 				94FA5AF62C1EF15F000ABE20 /* Model */,
 				9492BDF02C1FE49C004778B9 /* Detail */,
 				9492BDF12C1FE4AD004778B9 /* Form */,
@@ -225,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94229EB82C313C6E0037324D /* UIView+Extension.swift in Sources */,
 				9459678F2C1A6C51009247E1 /* ListView.swift in Sources */,
 				94FA5AFC2C1EF28D000ABE20 /* SettingsView.swift in Sources */,
 				9492BDF32C1FE4BA004778B9 /* FormView.swift in Sources */,
@@ -233,6 +259,8 @@
 				94229EB32C2D9B810037324D /* SettingsViewModel.swift in Sources */,
 				94FA5AFA2C1EF256000ABE20 /* DetailView.swift in Sources */,
 				9492BDF62C200A83004778B9 /* AnimalContainer.swift in Sources */,
+				94229EBB2C313D910037324D /* SnapshotHelper.swift in Sources */,
+				94229EBD2C3141FF0037324D /* View+Extension.swift in Sources */,
 				9459678D2C1A6C51009247E1 /* AnimaliaApp.swift in Sources */,
 				94229EB52C2D9F060037324D /* Animals.swift in Sources */,
 			);

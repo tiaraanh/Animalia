@@ -20,6 +20,30 @@ struct DetailView: View {
     // MARK: - Body
     var body: some View {
         
+        VStack() {
+            
+            content
+            
+            toggle
+            
+            actionButton
+            
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("Animal Detail")
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            onDismiss?()
+        }
+    }
+}
+
+extension DetailView {
+    
+    // MARK: - Content
+    private var content: some View {
+        
         VStack(alignment: .leading) {
             Group {
                 Text("Type")
@@ -40,7 +64,13 @@ struct DetailView: View {
                     .padding(.bottom, 10)
                     .disabled(animal.isLocked)
             }
-            
+        }
+    }
+    
+    // MARK: - Toggle
+    private var toggle: some View {
+        
+        VStack {
             Toggle("Lock", isOn: $animal.isLocked)
                 .padding(.top, 10)
                 .onChange(of: animal.isLocked) { newValue in
@@ -52,7 +82,13 @@ struct DetailView: View {
                         }
                     }
                 }
-            
+        }
+    }
+    
+    // MARK: - Action Button
+    private var actionButton: some View {
+        
+        VStack {
             Button(action: {
                 viewModel.saveAnimal(animal: animal)
                 isActive = false
@@ -69,7 +105,7 @@ struct DetailView: View {
             .padding(.top, 10)
             
             Button(action: {
-                
+                viewModel.saveAndShareAsImage(image: content.asImage())
             }) {
                 Text("Save as Image")
                     .frame(maxWidth: .infinity)
@@ -94,14 +130,6 @@ struct DetailView: View {
             }
             .padding(.top, 10)
             .disabled(animal.isLocked)
-            
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("Animal Detail")
-        .navigationBarTitleDisplayMode(.inline)
-        .onDisappear {
-            onDismiss?()
         }
     }
 }
